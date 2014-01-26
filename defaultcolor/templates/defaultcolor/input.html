@@ -1,0 +1,47 @@
+{% import "_includes/forms" as forms %}
+
+{% set config = {
+  id: name,
+  name: name,
+  value: value
+} %}
+{% set checkboxConfig = {
+  id: 'check_'~name,
+  name: name,
+  label: 'reset to default'
+} %}
+
+{{ forms.color(config) }}
+<br/>
+<button class="js_color_button" data-colorid="{{ (name | namespaceInputId) ~ '-field' }}" data-defaultcolor="{{settings.defaultColor}}" style="cursor:pointer;">set to default</button>
+
+{% set buttonJs %}
+$(document).ready(function() {
+  $('.js_color_button').click(function () {
+    var $me = $(this);
+    var defaultColor = $me.data('defaultcolor');
+    var $colorField = $('#'+$me.data('colorid'));
+    var $colorInput = $colorField.find('input');
+    var $colorPreview = $colorField.find('.colorpreview');
+    $colorInput.val(defaultColor);
+    $colorPreview.css('background-color', defaultColor);
+    return false;
+  });
+});
+{% endset %}
+{% includeJs buttonJs %}
+
+{#
+  Here is where it all happens. We have a color picker in the usual way, and a button.
+  When the button is clicked, we use js to find the input field holding the value, and
+  change it to the default color value. The dom that we are modifying is different
+  depending on whether we are using a native color picker (chrome e.g.), or the javascript
+  one (firefox e.g.). In either case, there is an outer color field, containing an <input>
+  elem with our data. In the case of the js color picker, there is also a .colorpreview
+  element.
+
+  You might think it would be simpler to use a prepValueFromPost() function to set the
+  value to the default on the backend. I thought so too, but I couldn't get values other
+  than the color value (I wanted a checkbox value) in that function. So doing it on the front
+  end.
+#}

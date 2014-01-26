@@ -1,0 +1,14 @@
+{% import "_includes/forms" as forms %}
+
+
+{{ forms.textField({
+  label: "Default Color"|t,
+    instructions: "The default color if none is specified (hex value such as #ff0033, or blank)"|t,
+  id: 'defaultColor',
+  name: 'defaultColor',
+  value: settings.defaultColor,
+  translatable: false,
+  maxlength: 7,
+  errors: settings.getErrors('defaultColor')
+}) }}
+

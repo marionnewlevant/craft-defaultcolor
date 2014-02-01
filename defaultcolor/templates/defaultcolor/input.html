@@ -13,7 +13,7 @@
 
 {{ forms.color(config) }}
 <br/>
-<button class="js_color_button" data-colorid="{{ (name | namespaceInputId) ~ '-field' }}" data-defaultcolor="{{settings.defaultColor}}" style="cursor:pointer;">set to default</button>
+<button class="btn js_color_button" data-colorid="{{ (name | namespaceInputId) ~ '-field' }}" data-defaultcolor="{{settings.defaultColor}}">set to default</button>
 
 {% set buttonJs %}
 $(document).ready(function() {

@@ -5,7 +5,7 @@
  * @package   Default Color
  * @author    Marion Newlevant
  * @copyright Copyright (c) 2014
- * @link      https://github.com/marionnewlevant/craft-default-color
+ * @link      https://github.com/marionnewlevant/craft-defaultcolor
  * @license   MIT
  */
 namespace Craft;

@@ -16,19 +16,22 @@
 <button class="btn js_color_button" data-colorid="{{ (name | namespaceInputId) ~ '-field' }}" data-defaultcolor="{{settings.defaultColor}}">set to default</button>
 
 {% set buttonJs %}
-$(document).ready(function() {
-  $('.js_color_button').click(function () {
-    var $me = $(this);
-    var defaultColor = $me.data('defaultcolor');
-    var $colorField = $('#'+$me.data('colorid'));
-    var $colorInput = $colorField.find('input');
-    var $colorPreview = $colorField.find('.colorpreview');
-    $colorInput.val(defaultColor);
-    $colorPreview.css('background-color', defaultColor);
-    return false;
+var DefaultColorNamespace = DefaultColorNamespace || {};
+if (!DefaultColorNamespace.isClickDeclared) {
+  $(document).ready(function() {
+    $('.js_color_button').click(function () {
+      var $me = $(this);
+      var defaultColor = $me.data('defaultcolor');
+      var $colorField = $('#'+$me.data('colorid'));
+      var $colorInput = $colorField.find('input');
+      var $colorPreview = $colorField.find('.colorpreview');
+      $colorInput.val(defaultColor);
+      $colorPreview.css('background-color', defaultColor);
+      return false;
+    });
   });
-});
-{% endset %}
+  DefaultColorNamespace.isClickDeclared = true;
+}{% endset %}
 {% includeJs buttonJs %}
 
 {#

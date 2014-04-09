@@ -11,3 +11,7 @@
 **Settings**
 
 - Default Color - default value for color
+
+**Known Bugs**
+
+The `set to default` button does not work in Live Preview.

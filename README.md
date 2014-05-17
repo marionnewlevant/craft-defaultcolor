@@ -12,6 +12,6 @@
 
 - Default Color - default value for color
 
-**Known Bugs**
+**Change Log**
 
-The `set to default` button does not work in Live Preview.
+0.2 Now works in Live Preview
